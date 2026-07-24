@@ -3,8 +3,17 @@ import { BlogCard } from '@/components/BlogCard';
 import { NewsCard } from '@/components/NewsCard';
 import { products, blogPosts, news } from '@/lib/data';
 import Link from 'next/link';
+import { GET } from './api/users/route';
 
-export default function Home() {
+export default async function Home() {
+
+  const data = (await GET()).json()
+
+  const result = await data
+
+
+
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -44,11 +53,52 @@ export default function Home() {
               Check out our most popular items
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-md">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-semibold">ID</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold">Name</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold">Email</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold">Role</th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold">Age</th>
+                  <th className="px-6 py-3 text-center text-sm font-semibold">Status</th>
+                </tr>
+              </thead>
+
+              <tbody className="divide-y divide-gray-100 bg-white">
+                {result.users?.map((u: any) => (
+                  <tr
+                    key={u.id}
+                    className="hover:bg-blue-50 transition-colors"
+                  >
+                    <td className="px-6 py-4">{u.id}</td>
+                    <td className="px-6 py-4 font-medium">{u.name}</td>
+                    <td className="px-6 py-4 text-gray-600">{u.email}</td>
+                    <td className="px-6 py-4">{u.role}</td>
+                    <td className="px-6 py-4 text-center">{u.age}</td>
+                    <td className="px-6 py-4 text-center">
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-semibold ${u.status === "Active"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
+                          }`}
+                      >
+                        {u.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.slice(0, 6).map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
+
           <div className="text-center mt-12">
             <Link
               href="/products"

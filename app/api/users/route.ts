@@ -1,0 +1,70 @@
+export async function GET() {
+  return Response.json({
+    users: [
+      {
+        id: 1,
+        name: "Lương Đức Quý",
+        email: "quy@example.com",
+        role: "Admin",
+        age: 24,
+        status: "Active",
+      },
+      {
+        id: 2,
+        name: "Đặng Trịnh Duy Anh",
+        email: "duyanh@example.com",
+        role: "Developer",
+        age: 22,
+        status: "Active",
+      },
+      {
+        id: 3,
+        name: "Nguyễn Văn Phi",
+        email: "phi@example.com",
+        role: "Tester",
+        age: 23,
+        status: "Inactive",
+      },
+      {
+        id: 4,
+        name: "Trần Minh Đức",
+        email: "duc@example.com",
+        role: "Designer",
+        age: 25,
+        status: "Active",
+      },
+      {
+        id: 5,
+        name: "Lê Thanh Tùng",
+        email: "tung@example.com",
+        role: "Leader",
+        age: 28,
+        status: "Active",
+      },
+      {
+        id: 6,
+        name: "Phạm Quốc Bảo",
+        email: "bao@example.com",
+        role: "Developer",
+        age: 24,
+        status: "Inactive",
+      },
+      {
+        id: 7,
+        name: "Hoàng Gia Huy",
+        email: "huy@example.com",
+        role: "Intern",
+        age: 21,
+        status: "Active",
+      },
+      {
+        id: 8,
+        name: "Võ Minh Khang",
+        email: "khang@example.com",
+        role: "QA",
+        age: 26,
+        status: "Active",
+      },
+    ],
+  });
+}
